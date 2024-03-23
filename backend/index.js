@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 
 //importing models
 const userModel = require("./models/userModel");
-
+const foodModel = require("./models/foodModels");
+const verifyToken = require("./middleware/verifyToken");
 const app = express();
 
 mongoose
@@ -47,7 +48,12 @@ app.post("/login", async (req, res) => {
     if (user !== null) {
       bcrypt.compare(userCred.password, user.password, (err, success) => {
         if (success === true) {
-          res.send({ message: "Login Success" });
+          jwt.sign({ email: userCred.email }, "nutrikey", (err, token) => {
+            if (!err) {
+              res.send({ message: "Login Success", token: token });
+            }
+          });
+          // res.send({ message: "Login Success" });
         } else {
           res.status(403).send({ message: "Incorrect Password" });
         }
@@ -58,6 +64,32 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "Some problem" });
+  }
+});
+
+app.use(express.json());
+//creating the food items
+app.post("/foodsItem", (req, res) => {
+  let food = req.body;
+  foodModel
+    .create(food)
+    .then((doc) => {
+      res.send({ data: doc, message: "food added successfully" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send({ message: "some error occured" });
+    });
+});
+
+// below endpoints must be accessed only with the token
+app.get("/foods", verifyToken, async (req, res) => {
+  try {
+    let foods = await foodModel.find();
+    res.send(foods);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "Some Problem while getting info" });
   }
 });
 

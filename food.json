@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Chicken Curry",
+    "calories": 110,
+    "protein": 15,
+    "carbohydrated": 5,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Chicken Tikka",
+    "calories": 130,
+    "protein": 12,
+    "carbohydrated": 1,
+    "fat": 5,
+    "fiber": 1
+  },
+  {
+    "name": "Chicken Breast",
+    "calories": 101,
+    "protein": 18,
+    "carbohydrated": 0,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Broccoli",
+    "calories": 7,
+    "protein": 0,
+    "carbohydrated": 1,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Shrimp",
+    "calories": 28,
+    "protein": 5,
+    "carbohydrated": 0,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Chicken Wing",
+    "calories": 80,
+    "protein": 10,
+    "carbohydrated": 1,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Apple",
+    "calories": 14,
+    "protein": 0,
+    "carbohydrated": 3,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Corn",
+    "calories": 59,
+    "protein": 2,
+    "carbohydrated": 14,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Grapes",
+    "calories": 20,
+    "protein": 0,
+    "carbohydrated": 5,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Oranges",
+    "calories": 21,
+    "protein": 0,
+    "carbohydrated": 5,
+    "fat": 4,
+    "fiber": 2
+  },
+  {
+    "name": "Banana",
+    "calories": 33,
+    "protein": 0,
+    "carbohydrated": 8,
+    "fat": 1,
+    "fiber": 1
+  }
+]
