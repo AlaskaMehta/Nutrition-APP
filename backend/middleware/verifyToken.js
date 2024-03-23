@@ -7,6 +7,7 @@ function verifyToken(req, res, next) {
       if (!err) {
         next();
       } else {
+        console.log(err);
         res.status(403).send({ message: "Invalid Token" });
       }
     });
