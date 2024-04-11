@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 //importing models
 const userModel = require("./models/userModel");
 const foodModel = require("./models/foodModels");
+const trackingModel = require("./models/trackingModel");
 const verifyToken = require("./middleware/verifyToken");
 const app = express();
 
@@ -108,6 +109,35 @@ app.get("/foods/:name", verifyToken, async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "some problem occurred" });
+  }
+});
+
+app.post("/track", verifyToken, async (req, res) => {
+  let trackBody = req.body;
+  try {
+    let track = await trackingModel.create(trackBody);
+    res.status(201).send({ message: "Food Added" });
+  } catch (err) {
+    console.log(err);
+    res.status(403).send({ message: "Some problem in getting the food data" });
+  }
+});
+
+//endpoint to fetch all foods eaten by a person
+app.get("/track/:userid/:date", verifyToken, async (req, res) => {
+  let userId = req.params.userid;
+  let date = new Date(req.params.date).toISOString().slice(0, 10);
+  console.log(date);
+
+  try {
+    let foods = await trackingModel
+      .find({ userID: userId, dateSchema: date })
+      .populate("userID")
+      .populate("foodID");
+    res.send(foods);
+  } catch (err) {
+    console.log(err);
+    res.status(403).send({ message: "Some problem in getting the food data" });
   }
 });
 
