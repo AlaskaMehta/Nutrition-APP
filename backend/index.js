@@ -10,6 +10,7 @@ const trackingModel = require("./models/trackingModel");
 const verifyToken = require("./middleware/verifyToken");
 const app = express();
 
+const cors = require("cors");
 mongoose
   .connect("mongodb://localhost:27017/Nutri-app")
   .then(() => {
@@ -20,6 +21,7 @@ mongoose
   });
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/register", (req, res) => {
   let user = req.body;
@@ -31,7 +33,7 @@ app.post("/register", (req, res) => {
           user.password = hpass;
           try {
             let doc = await userModel.create(user);
-            res.status(201).send({ message: "user registered" });
+            res.status(201).send({ message: "User Registered" });
           } catch (err) {
             console.log(err);
             res.status(500).send({ message: "some problem occured" });
