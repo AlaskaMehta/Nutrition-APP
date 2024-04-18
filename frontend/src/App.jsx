@@ -5,13 +5,20 @@ import Register from './components/Register'
 import Login from './components/Login'
 import NotFound from './components/NotFound'
 import Track from './components/Track'
+import { UserContext } from './contexts/UserContext'
+import { useState ,useEffect} from 'react'
 
 function App() {
-  
+
+  const [loggedUser,setLoggedUser]=useState(null);
+  useEffect(()=>{
+        console.log(loggedUser)
+    })
 
   return (
     <>
-      
+    
+      <UserContext.Provider value={{loggedUser,setLoggedUser}}> 
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login/>}/>
@@ -22,6 +29,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+       </UserContext.Provider>
     </>
   )
 }

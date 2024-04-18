@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useState ,useContext, useEffect} from "react"
+import { UserContext } from "../contexts/UserContext";
 import { Link ,useNavigate} from "react-router-dom"
 
 
 
 export default function Login(){
+
+    const loggedInData=useContext(UserContext)
 
     const navigate=useNavigate();
 
@@ -15,6 +18,8 @@ export default function Login(){
         type:"invisible-msg",
         text:""
     })
+
+    
 
     function handleInput(event){
         setUserCred((prevState)=>{
@@ -37,6 +42,7 @@ export default function Login(){
             //     email:"",
             //     password:""
             // })
+            // console.log(res);
             if(res.status===404){
                 setMessage({type:"error",text:"UserName or Email Doesn't exist"})
             }
@@ -53,11 +59,13 @@ export default function Login(){
         }
         )
         .then((data)=>{
-            // console.log(data.token)
+            // console.log(data)
             
-            if(data.token!==undefined){
+            if(data.token!==undefined){ 
 
                 localStorage.setItem("nutrify-user",JSON.stringify(data))
+                
+                loggedInData.setLoggedUser(data)
     
                 navigate("/track")
             }
