@@ -6,7 +6,7 @@ import { Link ,useNavigate} from "react-router-dom"
 
 export default function Login(){
 
-    const loggedInData=useContext(UserContext)
+    const loggedData=useContext(UserContext)
 
     const navigate=useNavigate();
 
@@ -65,7 +65,7 @@ export default function Login(){
 
                 localStorage.setItem("nutrify-user",JSON.stringify(data))
                 
-                loggedInData.setLoggedUser(data)
+                loggedData.setLoggedUser(data)
     
                 navigate("/track")
             }
